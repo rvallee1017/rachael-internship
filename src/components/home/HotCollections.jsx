@@ -40,7 +40,10 @@ const HotCollections = () => {
             </div>
             <Slider {...settings}>
                 {collections.map((collection) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={collection.id}>
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" 
+              key={collection.id}
+              style={{ padding: "0 10px" }}
+              >
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
