@@ -7,27 +7,48 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Skeleton from "../UI/Skeleton";
 
 
 
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
+  const [loading, setLoading] =useState(true)
   useEffect(() => {
     axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     .then((response) => {
       console.log(response.data);
       setCollections(response.data);
+      setLoading(false)
     });
   }, [])
  
   const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-  };
+  dots: true,
+  arrows: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  pauseOnHover: true,
+  responsive: [
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -45,19 +66,23 @@ const HotCollections = () => {
                 <div key={collection.id} style={{ padding: "0 10px" }}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
+                      <Skeleton width="100%" height="200px" />
                       <Link to="/item-details">
                         <img src={collection.nftImage} className="lazy img-fluid" alt="" />
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
+                      <Skeleton width="50px" height="50px" borderRadius="50%" />
                       <Link to="/author">
                         <img className="lazy pp-coll" src={collection.authorImage} alt="" />
                       </Link>
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="nft_coll_info">
+                      <Skeleton width="100px" height="20px" />
                       <Link to="/explore">
                         <h4>{collection.title}</h4>
+                        <Skeleton width="60px" height="20px" />
                       </Link>
                       <span>{collection.code}</span>
                     </div>
