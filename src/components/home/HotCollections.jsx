@@ -22,7 +22,7 @@ const HotCollections = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
   };
   return (
@@ -39,8 +39,8 @@ const HotCollections = () => {
               </div>
             </div>
             <Slider {...settings}>
-                {collections.map((collection, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+                {collections.map((collection) => (
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={collection.id}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
