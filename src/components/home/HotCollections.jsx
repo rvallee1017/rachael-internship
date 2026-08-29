@@ -27,14 +27,8 @@ const HotCollections = () => {
   };
   return (
     <>
-      <Slider {...settings}>
-        {collections.map((collection) => (
-          <div key={collection.id}>
-            <img src={collection.authorImage} alt={collection.title} />
-            <h3>{collection.title}</h3>
-          </div>
-        ))}
-      </Slider>
+      
+       
       <section id="section-collections" className="no-bottom">
         <div className="container">
           <div className="row">
@@ -44,7 +38,8 @@ const HotCollections = () => {
                 <div className="small-border bg-color-2"></div>
               </div>
             </div>
-            {collections.map((collection, index) => (
+            <Slider {...settings}>
+                {collections.map((collection, index) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
@@ -67,6 +62,7 @@ const HotCollections = () => {
                 </div>
               </div>
             ))}
+            </Slider>
           </div>
         </div>
       </section>
