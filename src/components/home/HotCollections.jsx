@@ -40,8 +40,8 @@ const HotCollections = () => {
                 <h2>Hot Collections</h2>
                 <div className="small-border bg-color-2"></div>
               </div>
-            </div>
-            <Slider {...settings}>
+              < div classname="col-lg-12">
+                <Slider {...settings}>
                 {collections.map((collection) => (
               <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" 
               key={collection.id}
@@ -68,7 +68,9 @@ const HotCollections = () => {
                 </div>
               </div>
             ))}
-            </Slider>
+              </Slider>
+              </div>
+            </div>
           </div>
         </div>
       </section>
