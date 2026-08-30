@@ -14,16 +14,16 @@ import Skeleton from "../UI/Skeleton";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
-  const [loading, setLoading] =useState(true)
+  const [isLoading, setIsLoading] =useState(true)
   useEffect(() => {
     axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
     .then((response) => {
       console.log(response.data);
       setCollections(response.data);
-      setLoading(false)
+      setIsLoading(false)
     });
   }, [])
- 
+
   const settings = {
   dots: true,
   arrows: true,
@@ -62,33 +62,39 @@ const HotCollections = () => {
 
           <div className="col-lg-12">
             <Slider {...settings}>
+              {
+                isLoading ? (
+                  <>
+                <Skeleton />
+                  </>
+                ) : (
+                  <>
               {collections.map((collection) => (
                 <div key={collection.id} style={{ padding: "0 10px" }}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                      <Skeleton width="100%" height="200px" />
                       <Link to="/item-details">
                         <img src={collection.nftImage} className="lazy img-fluid" alt="" />
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Skeleton width="50px" height="50px" borderRadius="50%" />
                       <Link to="/author">
                         <img className="lazy pp-coll" src={collection.authorImage} alt="" />
                       </Link>
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="nft_coll_info">
-                      <Skeleton width="100px" height="20px" />
                       <Link to="/explore">
                         <h4>{collection.title}</h4>
-                        <Skeleton width="60px" height="20px" />
                       </Link>
                       <span>{collection.code}</span>
                     </div>
                   </div>
                 </div>
               ))}
+               </>
+                )
+              }
             </Slider>
           </div>
         </div>
