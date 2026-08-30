@@ -14,7 +14,7 @@ useEffect(() => {
   axios
     .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
     .then((response) => {
-      setAuthor(response.data);
+      setAuthor(response.data[0]);
       setLoading(false)
     });
 }, [authorId]);
@@ -39,7 +39,7 @@ useEffect(() => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={author?.authorImage} alt="" />
+                      <img src={author?.authorImage || AuthorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
