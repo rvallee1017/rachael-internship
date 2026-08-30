@@ -8,9 +8,10 @@ const NewItems = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoading(false)
-    }, 1000)
+    }, 2000)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
