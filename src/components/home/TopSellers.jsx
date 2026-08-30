@@ -42,7 +42,7 @@ const [authors, setAuthors] = useState([]);
               {authors.map((author) => (
                 <li key={author.id}>
                   <div className="author_list_pp">
-                    <Link to="/author">
+                    <Link to={`/author/${author.id}`}>
                       <img
                         className="lazy pp-author"
                         src={author.authorImage}
@@ -52,7 +52,7 @@ const [authors, setAuthors] = useState([]);
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to={`/author/${author.id}`}>{author.authorName}</Link>
+                    <Link to={`/author/${author.id}`}></Link>
                     <span>{author.price} ETH</span>
                   </div>
                 </li>
