@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
+import authorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import SkeletonCard from "../UI/SkeletonCard";
 
@@ -52,7 +52,7 @@ const [authors, setAuthors] = useState([]);
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">{author.authorName}</Link>
+                    <Link to={`/author/${author.id}`}>{author.authorName}</Link>
                     <span>{author.price} ETH</span>
                   </div>
                 </li>
