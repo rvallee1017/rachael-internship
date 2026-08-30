@@ -52,7 +52,7 @@ const [authors, setAuthors] = useState([]);
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to={`/author/${author.id}`}></Link>
+                    <Link to={`/author/${author.id}`}>{author.authorName}</Link>
                     <span>{author.price} ETH</span>
                   </div>
                 </li>
