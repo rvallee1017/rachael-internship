@@ -6,15 +6,16 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const Author = () => {
-
   const { authorId } = useParams();
   const [author, setAuthor] = useState(null);
+  const [loading, setLoading] = useState(true)
 
 useEffect(() => {
   axios
     .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
     .then((response) => {
       setAuthor(response.data);
+      setLoading(false)
     });
 }, [authorId]);
 
@@ -38,15 +39,15 @@ useEffect(() => {
                 <div className="d_profile de-flex">
                   <div className="de-flex-col">
                     <div className="profile_avatar">
-                      <img src={author?.authorImage || AuthorImage} alt="" />
+                      <img src={author.authorImage} alt="" />
 
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
                           {author?.authorName}
-                          <span className="profile_username">@{author?.tag}</span>
+                          <span className="profile_username">@{author.tag}</span>
                           <span id="wallet" className="profile_wallet">
-                            {author?.address}
+                            {author.address}
                           </span>
                           <button id="btn_copy" title="Copy Text">
                             Copy
@@ -57,7 +58,7 @@ useEffect(() => {
                   </div>
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
-                      <div className="profile_follower">{author?.followers} followers</div>
+                      <div className="profile_follower">{author.followers} followers</div>
                       <Link to="#" className="btn-main">
                         Follow
                       </Link>
