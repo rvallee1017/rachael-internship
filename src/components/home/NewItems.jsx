@@ -1,4 +1,4 @@
-import React, { useEffect, UseState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
@@ -28,7 +28,7 @@ const NewItems = () => {
             <SkeletonCard key={index} />
           ))
           :
-          {new Array(4).fill(0).map((_, index) => (
+          new Array(4).fill(0).map((_, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
               <div className="nft__item">
                 <div className="author_list_pp">
@@ -83,7 +83,7 @@ const NewItems = () => {
                 </div>
               </div>
             </div>
-          ))}}
+          ))}
         </div>
       </div>
     </section>
