@@ -8,7 +8,7 @@ import SkeletonCard from "../UI/SkeletonCard";
 
 const TopSellers = () => {
 
-const [Author, setAuthor] = useState([]);
+const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
@@ -16,7 +16,7 @@ const [Author, setAuthor] = useState([]);
     axios
       .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
       .then((response) => {
-        setAuthor(response.data);
+        setAuthors(response.data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -35,25 +35,25 @@ const [Author, setAuthor] = useState([]);
 
           <div className="col-lg-12">
           {loading ? (
-            new Array(12).fill(0).map((Author, index) => <SkeletonCard key={index} />)
+            new Array(12).fill(0).map((_, index) => <SkeletonCard key={index} />)
           ) : (
             <div className="col-md-12">
             <ol className="author_list">
-              {new Array(12).fill(0).map((Author, index) => (
-                <li key={index}>
+              {authors.map((author) => (
+                <li key={author.id}>
                   <div className="author_list_pp">
                     <Link to="/author">
                       <img
                         className="lazy pp-author"
-                        src={AuthorImage}
+                        src={author.authorImage}
                         alt=""
                       />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to="/author">{Author.name}</Link>
-                    <span>{Author.price ? `${Author.price} ETH` : "2.1 ETH"}</span>
+                    <Link to="/author">{author.authorName}</Link>
+                    <span>{author.price} ETH</span>
                   </div>
                 </li>
               ))}
