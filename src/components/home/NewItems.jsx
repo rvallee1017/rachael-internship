@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import SkeletonCard from "../UI/SkeletonCard";
+import Countdown from "../UI/Countdown";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     axios
@@ -57,9 +59,11 @@ const NewItems = () => {
             </div>
           </div>
 
+          <div className="col-lg-12">
           {loading ? (
             new Array(4).fill(0).map((_, index) => <SkeletonCard key={index} />)
           ) : (
+            
             <Slider {...settings}>
               {items.map((item) => (
                 <div key={item.id}>
@@ -81,7 +85,7 @@ const NewItems = () => {
                     </div>
 
                     {item.expiryDate && (
-                      <div className="de_countdown">{item.expiryDate}</div>
+                      <Countdown expiryDate={item.expiryDate} />
                     )}
 
                     <div className="nft__item_wrap">
@@ -116,7 +120,9 @@ const NewItems = () => {
                       <Link to="/item-details">
                         <h4>{item.title || "Pinky Ocean"}</h4>
                       </Link>
-                      <div className="nft__item_price">{item.price || "3.08 ETH"}</div>
+                      <div className="nft__item_price">
+                        {item.price ? `${item.price} ETH` : "3.08 ETH"}
+                      </div>
                       <div className="nft__item_like">
                         <i className="fa fa-heart"></i>
                         <span>{item.likes || 69}</span>
@@ -127,6 +133,7 @@ const NewItems = () => {
               ))}
             </Slider>
           )}
+          </div>
         </div>
       </div>
     </section>
