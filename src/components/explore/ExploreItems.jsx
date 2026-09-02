@@ -26,11 +26,6 @@ const ExploreItems = () => {
     setItems(sortedItems);
   }
 
-  useEffect(() => {
-    items.slice(0, sliceNum).map((item, index) => (
-      setSliceNum(item)
-    ))
-}, [sliceNum])
 
   useEffect(() => {
     axios
@@ -60,7 +55,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {items.map((item, index) => (
+      {items.slice(0, sliceNum).map((item, index) => (
         <div
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
