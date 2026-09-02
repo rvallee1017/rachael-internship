@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import Countdown from "../UI/Countdown";
+import axios from "axios";
 
 const ExploreItems = () => {
+  const [setAuthors, authors] = useState()
+    const [loading, setLoading] = useState(true);
+    const [item] = useState()
+    
+    
+      useEffect(() => {
+        axios
+          .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
+          .then((response) => {
+            setAuthors(response.data);
+            setLoading(false);
+          })
+          .catch(() => setLoading(false));
+      }, []);
+
   return (
     <>
       <div>
@@ -27,11 +44,13 @@ const ExploreItems = () => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={AuthorImage} alt="" />
+                <img className="lazy" src={item.authorImage || AuthorImage} alt="" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">5h 30m 32s</div>
+            <div className="de_countdown">
+              <Countdown expiryDate={item.expiryDate} />
+            </div>
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -52,17 +71,21 @@ const ExploreItems = () => {
                 </div>
               </div>
               <Link to="/item-details">
-                <img src={nftImage} className="lazy nft__item_preview" alt="" />
+                <img src={item.nftImage || nftImage} 
+                className="lazy nft__item_preview" 
+                alt="" />
               </Link>
             </div>
             <div className="nft__item_info">
               <Link to="/item-details">
-                <h4>Pinky Ocean</h4>
+                <h4>{item.title || "Pinky Ocean"}</h4>
               </Link>
-              <div className="nft__item_price">1.74 ETH</div>
+              <div className="nft__item_price">
+                {item.price ? `${item.price} ETH` : "1.74 ETH"}
+                </div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
-                <span>69</span>
+                <span>{item.likes || 69}</span>
               </div>
             </div>
           </div>
