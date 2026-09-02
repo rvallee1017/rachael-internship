@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
-import Countdown from "../components/UI/Countdown";
-import axios from "axios";
-
 
 //https://us-central1-nft-cloud-functions.cloudfunctions.net/explore
 
 const Explore = () => {
-  
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

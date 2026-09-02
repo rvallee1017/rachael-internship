@@ -1,29 +1,43 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import Countdown from "../UI/Countdown";
 import axios from "axios";
+import SkeletonCard from "../UI/SkeletonCard";
 
 const ExploreItems = () => {
-  const [setAuthors, authors] = useState()
-    const [loading, setLoading] = useState(true);
-    const [item] = useState()
-    
-    
-      useEffect(() => {
-        axios
-          .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
-          .then((response) => {
-            setAuthors(response.data);
-            setLoading(false);
-          })
-          .catch(() => setLoading(false));
-      }, []);
+  const [items, setItems] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [sliceNum, setSliceNum] = useState(6)
+
+  useEffect(() => {
+    items.slice(0, sliceNum).map((item) => {
+      setSliceNum(item)
+    })
+  }, [sliceNum])
+
+  useEffect(() => {
+    axios
+      .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
+      .then((response) => {
+        setItems(response.data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   return (
     <>
-      <div>
+
+      {
+        isLoading ? (
+          <>
+          <SkeletonCard />
+          </>
+        ) : (
+          <>
+           <div>
         <select id="filter-items" defaultValue="">
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
@@ -31,7 +45,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {new Array(8).fill(0).map((_, index) => (
+      {items.map((item, index) => (
         <div
           key={index}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -44,13 +58,15 @@ const ExploreItems = () => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
-                <img className="lazy" src={item.authorImage || AuthorImage} alt="" />
+                <img
+                  className="lazy"
+                  src={item.authorImage || AuthorImage}
+                  alt=""
+                />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
-            <div className="de_countdown">
-              <Countdown expiryDate={item.expiryDate} />
-            </div>
+            <Countdown expiryDate={item.expiryDate} />
 
             <div className="nft__item_wrap">
               <div className="nft__item_extra">
@@ -71,9 +87,11 @@ const ExploreItems = () => {
                 </div>
               </div>
               <Link to="/item-details">
-                <img src={item.nftImage || nftImage} 
-                className="lazy nft__item_preview" 
-                alt="" />
+                <img
+                  src={item.nftImage || nftImage}
+                  className="lazy nft__item_preview"
+                  alt=""
+                />
               </Link>
             </div>
             <div className="nft__item_info">
@@ -82,7 +100,7 @@ const ExploreItems = () => {
               </Link>
               <div className="nft__item_price">
                 {item.price ? `${item.price} ETH` : "1.74 ETH"}
-                </div>
+              </div>
               <div className="nft__item_like">
                 <i className="fa fa-heart"></i>
                 <span>{item.likes || 69}</span>
@@ -91,12 +109,15 @@ const ExploreItems = () => {
           </div>
         </div>
       ))}
-      <div className="col-md-12 text-center">
+      <div onClick={() => setSliceNum(sliceNum + 6)} className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead">
           Load more
         </Link>
       </div>
-    </>
+          </>
+        )
+      }
+        </>
   );
 };
 
