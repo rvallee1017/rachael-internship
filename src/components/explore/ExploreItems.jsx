@@ -13,7 +13,7 @@ const ExploreItems = () => {
     
       useEffect(() => {
         axios
-          .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
+          .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
           .then((response) => {
             setAuthors(response.data);
             setLoading(false);
