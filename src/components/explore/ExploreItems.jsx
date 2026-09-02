@@ -11,11 +11,26 @@ const ExploreItems = () => {
   const [isLoading, setLoading] = useState(true);
   const [sliceNum, setSliceNum] = useState(6)
 
+  function handleFilterChange(event) {
+    const selectedValue = event.target.value;
+    let sortedItems = [...items];
+
+    if (selectedValue === "price_low_to_high") {
+      sortedItems.sort((a, b) => a.price - b.price);
+    } else if (selectedValue === "price_high_to_low") {
+      sortedItems.sort((a, b) => b.price - a.price);
+    } else if (selectedValue === "likes_high_to_low") {
+      sortedItems.sort((a, b) => b.likes - a.likes);
+    }
+
+    setItems(sortedItems);
+  }
+
   useEffect(() => {
-    items.slice(0, sliceNum).map((item) => {
+    items.slice(0, sliceNum).map((item, index) => (
       setSliceNum(item)
-    })
-  }, [sliceNum])
+    ))
+}, [sliceNum])
 
   useEffect(() => {
     axios
@@ -38,7 +53,7 @@ const ExploreItems = () => {
         ) : (
           <>
            <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" onChange={handleFilterChange} defaultValue="">
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
