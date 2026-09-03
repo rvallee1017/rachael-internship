@@ -63,6 +63,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <div className="col-lg-12"></div>
 
           <div className="col-lg-12">
               {
