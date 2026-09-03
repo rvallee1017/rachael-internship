@@ -6,8 +6,11 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import SkeletonCard from "../UI/SkeletonCard";
 import Countdown from "../UI/Countdown";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
+  AOS.init();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,6 +52,7 @@ const NewItems = () => {
   };
 
   return (
+    <div data-aos="fade-up" data-aos-duration="2000">
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -137,6 +141,7 @@ const NewItems = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

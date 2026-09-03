@@ -8,11 +8,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SkeletonCard from "../UI/SkeletonCard";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 
 
 
 const HotCollections = () => {
+  AOS.init();
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] =useState(true)
   useEffect(() => {
@@ -50,6 +53,7 @@ const HotCollections = () => {
   ],
 };
   return (
+    <div data-aos="fade-up" data-aos-duration="2000">
     <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -99,6 +103,7 @@ const HotCollections = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

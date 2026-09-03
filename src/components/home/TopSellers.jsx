@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import authorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import SkeletonCard from "../UI/SkeletonCard";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 //https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers
 
 const TopSellers = () => {
+  AOS.init();
 
-const [authors, setAuthors] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
@@ -23,6 +26,7 @@ const [authors, setAuthors] = useState([]);
   }, []);
 
   return (
+    <div data-aos="fade-up" data-aos-duration="1000">
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
@@ -64,6 +68,7 @@ const [authors, setAuthors] = useState([]);
         </div>
       </div>
     </section>
+    </div>
   );
 };
 
