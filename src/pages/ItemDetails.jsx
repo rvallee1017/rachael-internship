@@ -16,7 +16,7 @@ const ItemDetails = () => {
   const [creatorImage, setCreatorImage] = useState(AuthorImage);
 
    useEffect(() => {
-    axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${items.Id}`)
+    axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=39924405")
     .then((response) => {
       console.log(response.data);
       setItems([response.data]);
