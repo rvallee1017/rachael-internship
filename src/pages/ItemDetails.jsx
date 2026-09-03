@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 import SkeletonCard from "../components/UI/SkeletonCard";
 import { useParams } from "react-router-dom";
@@ -13,8 +12,8 @@ import { useParams } from "react-router-dom";
 const ItemDetails = () => {
   const [loading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
-  const [ownerImage, setOwnerImage] = useState(AuthorImage);
-  const [creatorImage, setCreatorImage] = useState(AuthorImage);
+  const [ownerImage] = useState(AuthorImage);
+  const [creatorImage] = useState(AuthorImage);
   const params = useParams();
   const nftId = params.nftId;
 

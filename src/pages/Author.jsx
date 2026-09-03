@@ -8,7 +8,7 @@ import axios from "axios";
 const Author = () => {
   const { authorId } = useParams();
   const [author, setAuthor] = useState(null);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 useEffect(() => {
   axios
     .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
