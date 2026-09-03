@@ -5,6 +5,7 @@ import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 import axios from "axios";
 import SkeletonCard from "../components/UI/SkeletonCard";
+import { useParams } from "react-router-dom";
 
 
 //https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=17914494
@@ -14,12 +15,14 @@ const ItemDetails = () => {
   const [items, setItems] = useState([]);
   const [ownerImage, setOwnerImage] = useState(AuthorImage);
   const [creatorImage, setCreatorImage] = useState(AuthorImage);
+  const params = useParams();
+  const nftId = params.nftId;
 
    useEffect(() => {
-    axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=39924405")
+    axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`   )
     .then((response) => {
       console.log(response.data);
-      setItems([response.data]);
+      setItems(response.data);
       setIsLoading(false)
     });
   }, [])
@@ -47,7 +50,7 @@ const ItemDetails = () => {
             <div className="row">
               <div className="col-md-6 text-center">
                 <img
-                  src={nftImage}
+                  src={items.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
                 />
