@@ -162,6 +162,7 @@ const Footer = () => {
                     <span className="copy">&copy; Copyright 2022</span>
                   </Link>
                 </div>
+                <div></div>
               </div>
             </div>
           </div>

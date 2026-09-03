@@ -23,13 +23,13 @@ const AuthorItems = () => {
                       <button>Buy Now</button>
                       <div className="nft__item_share">
                         <h4>Share</h4>
-                        <a href="" target="_blank" rel="noreferrer">
+                        <a href="/facebook" target="_blank" rel="noreferrer">
                           <i className="fa fa-facebook fa-lg"></i>
                         </a>
-                        <a href="" target="_blank" rel="noreferrer">
+                        <a href="/twitter" target="_blank" rel="noreferrer">
                           <i className="fa fa-twitter fa-lg"></i>
                         </a>
-                        <a href="">
+                        <a href="/contact" target="_blank" rel="noreferrer">
                           <i className="fa fa-envelope fa-lg"></i>
                         </a>
                       </div>
@@ -44,7 +44,7 @@ const AuthorItems = () => {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to="/item-details">
+                  <Link to="item-details">
                     <h4>Pinky Ocean</h4>
                   </Link>
                   <div className="nft__item_price">2.52 ETH</div>
