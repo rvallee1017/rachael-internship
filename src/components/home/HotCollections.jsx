@@ -72,7 +72,7 @@ const HotCollections = () => {
                   <>
             <Slider {...settings}>
               {collections.map((collection) => (
-                <div key={collection.id} style={{ padding: "0 10px" }}>
+                <div key={collection.id} style={{ padding: "0 20px" }}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
                       <Link to={`/item-details/${collection.nftId}`}>
@@ -80,7 +80,7 @@ const HotCollections = () => {
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${collection.authorId}`}>
                         <img className="lazy pp-coll" src={collection.authorImage} alt="" />
                       </Link>
                       <i className="fa fa-check"></i>

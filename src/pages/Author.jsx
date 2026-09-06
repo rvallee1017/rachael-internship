@@ -11,13 +11,9 @@ const Author = () => {
   const [loading, setLoading] = useState(true);
 useEffect(() => {
   axios
-    .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers")
+    .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?authorId=${authorId}`)
     .then((response) => {
-      const selectedAuthor = response.data.find(
-        (author) => String(author.id) === authorId
-      );
-
-      setAuthor(selectedAuthor);
+      setAuthor(response.data);
       setLoading(false);
     });
 }, [authorId]);

@@ -93,13 +93,13 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${items.creatorId}`}>
                             <img className="lazy" src={items.creatorImage || creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{`${items.creatorName || "Monica Lucas"}`}</Link>
+                          <Link to={`/author/${items.creatorId}`}>{`${items.creatorName || "Monica Lucas"}`}</Link>
                         </div>
                       </div>
                     </div>
