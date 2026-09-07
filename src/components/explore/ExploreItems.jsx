@@ -119,11 +119,13 @@ const ExploreItems = () => {
           </div>
         </div>
       ))}
-      <div onClick={() => setSliceNum(sliceNum + 4)} className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
-          Load more
-        </Link>
-      </div>
+      {sliceNum < items.length && (
+        <div onClick={() => setSliceNum(sliceNum + 4)} className="col-md-12 text-center">
+          <Link to="" id="loadmore" className="btn-main lead">
+            Load more
+          </Link>
+        </div>
+      )}
           </>
         )
       }

@@ -71,6 +71,8 @@ const HotCollections = () => {
                 ) : (
                   <>
             <Slider {...settings}>
+              <button className="slick-prev:before slick-arrow" aria-label="Previous" type="button" style={{ display: "block", color: "#222" }}>Previous</button>
+              <button className="slick-next:before slick-arrow" aria-label="Next" type="button" style={{ display: "block", color: "#222" }}>Next</button>
               {collections.map((collection) => (
                 <div key={collection.id} style={{ padding: "0 20px" }}>
                   <div className="nft_coll">
