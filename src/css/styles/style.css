@@ -2631,14 +2631,6 @@ footer:not(.footer-light) #form_subscribe.form-dark input[type="text"] {
 
 .slick-arrow .slick-next:before, 
 .slick-arrow .slick-prev:before {
-  position: absolute;
-  top: 50%;
-  z-index: 100;
-  display: block;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 20px;
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
   color: #dbbad3;
