@@ -42,9 +42,7 @@ const ExploreItems = () => {
 
       {
         isLoading ? (
-          <>
-          <SkeletonCard />
-          </>
+          new Array(4).fill(0).map((_) => <SkeletonCard />)
         ) : (
           <>
            <div>

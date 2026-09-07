@@ -6,21 +6,12 @@ import SkeletonCard from "../components/UI/SkeletonCard";
 //https://us-central1-nft-cloud-functions.cloudfunctions.net/explore
 
 const Explore = () => {
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
 
   return (
-
-    {
-      loading ? (
-      <>
-        <SkeletonCard />
-      </>
-      ) : (
-      <>
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -51,10 +42,6 @@ const Explore = () => {
         </section>
       </div>
     </div>
-    </>
-    )
-      }
-    </>
   );
 };
 

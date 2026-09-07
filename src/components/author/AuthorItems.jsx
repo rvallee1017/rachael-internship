@@ -5,20 +5,9 @@ import nftImage from "../../images/nftImage.jpg";
 import SkeletonCard from "../UI/SkeletonCard";
 
 const AuthorItems = ({ author }) => {
-  const [isLoading, setLoading] = useState(true);
 
   const items = author?.nftCollection || [];
   return (
-
-     <>
-
-      {
-        isLoading ? (
-          <>
-          <SkeletonCard />
-          </>
-        ) : (
-          <>
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
@@ -73,9 +62,6 @@ const AuthorItems = ({ author }) => {
         </div>
       </div>
     </div>
-    </>
-        )}
-        </>
   );
 };
 
