@@ -4,11 +4,12 @@ import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
+import SkeletonCard from "../components/UI/SkeletonCard";
 
 const Author = () => {
   const { authorId } = useParams();
   const [author, setAuthor] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 useEffect(() => {
   axios
     .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
@@ -19,6 +20,15 @@ useEffect(() => {
 }, [authorId]);
 
   return (
+
+    <>
+     {
+        isLoading ? (
+          <>
+          <SkeletonCard />
+          </>
+        ) : (
+          <>
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -76,6 +86,10 @@ useEffect(() => {
         </section>
       </div>
     </div>
+    </>
+        )}
+    </>
+   
   );
 };
 

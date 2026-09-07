@@ -1,11 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import SkeletonCard from "../UI/SkeletonCard";
 
 const AuthorItems = ({ author }) => {
+  const [isLoading, setLoading] = useState(true);
+
   const items = author?.nftCollection || [];
   return (
+
+     <>
+
+      {
+        isLoading ? (
+          <>
+          <SkeletonCard />
+          </>
+        ) : (
+          <>
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
@@ -60,6 +73,9 @@ const AuthorItems = ({ author }) => {
         </div>
       </div>
     </div>
+    </>
+        )}
+        </>
   );
 };
 

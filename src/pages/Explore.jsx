@@ -1,16 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import SkeletonCard from "../components/UI/SkeletonCard";
 
 //https://us-central1-nft-cloud-functions.cloudfunctions.net/explore
 
 const Explore = () => {
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
 
   return (
+
+    {
+      loading ? (
+      <>
+        <SkeletonCard />
+      </>
+      ) : (
+      <>
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
@@ -41,6 +51,10 @@ const Explore = () => {
         </section>
       </div>
     </div>
+    </>
+    )
+      }
+    </>
   );
 };
 
