@@ -58,10 +58,8 @@ useEffect(() => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">{author?.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        <button onClick={() => setAuthor({ ...author, followers: author?.followers + 1 })} style={{ cursor: "pointer", border: "none" }}>
+                      <Link to="#" className="btn-main" onClick={() => setAuthor({ ...author, followers: author?.followers + 1 })} style={{ cursor: "pointer", border: "none" }}>
                           Follow
-                        </button>
                       </Link>
                     </div>
                   </div>

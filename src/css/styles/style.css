@@ -2629,8 +2629,8 @@ footer:not(.footer-light) #form_subscribe.form-dark input[type="text"] {
   margin: 0 0 0 -8px;
 }
 
-.slick-arrow .slick-next:before, 
-.slick-arrow .slick-prev:before {
+.slick-next:before, 
+.slick-prev:before {
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
   color: #dbbad3;
