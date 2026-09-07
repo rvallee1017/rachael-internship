@@ -9,7 +9,7 @@ import SkeletonCard from "../UI/SkeletonCard";
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [sliceNum, setSliceNum] = useState(6)
+  const [sliceNum, setSliceNum] = useState(4)
 
   function handleFilterChange(event) {
     const selectedValue = event.target.value;
@@ -119,7 +119,7 @@ const ExploreItems = () => {
           </div>
         </div>
       ))}
-      <div onClick={() => setSliceNum(sliceNum + 6)} className="col-md-12 text-center">
+      <div onClick={() => setSliceNum(sliceNum + 4)} className="col-md-12 text-center">
         <Link to="" id="loadmore" className="btn-main lead">
           Load more
         </Link>
